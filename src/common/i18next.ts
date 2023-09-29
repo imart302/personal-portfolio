@@ -1,0 +1,108 @@
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { experience } from '../data/experience';
+import { SKILLS_DATA } from '../data/skills';
+
+export enum TextStrings {
+  name,
+  about_me,
+  experience,
+  portfolio,
+  skills,
+  image_caption,
+  brief,
+  presentation,
+  soft_skills,
+  hard_skills,
+  programming_langs,
+  frameworks,
+  tools,
+  calendar_title,
+  calendar_desc,
+  try,
+  source_code
+}
+
+const resources = {
+  en: {
+    translation: {
+      [TextStrings.name]: 'Ivan Martinez',
+      [TextStrings.about_me]: 'About me',
+      [TextStrings.experience]: 'Experience',
+      [TextStrings.portfolio]: 'Portfolio',
+      [TextStrings.skills]: 'Skills',
+      [TextStrings.image_caption]: 'Computer Engineer/Web Developer',
+      [TextStrings.brief]:
+        'Hi, my name is Ivan, I’m a computer engineer with MS in Computer Science',
+      [TextStrings.presentation]:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      [TextStrings.soft_skills]: 'Soft skills',
+      [TextStrings.hard_skills]: 'Hard skills',
+      [TextStrings.programming_langs]: 'Programming languages',
+      [TextStrings.frameworks]: 'Frameworks',
+      [TextStrings.tools]: 'Tools',
+      [TextStrings.calendar_title]: 'Calendar App',
+      [TextStrings.calendar_desc]: 'This is a calendar application demo with features as: login, register, save an event, update event and delete event. The backend is made with NodeJS and express',
+      [TextStrings.try]: 'Try',
+      [TextStrings.source_code]: 'Source code'
+
+    },
+  },
+  es: {
+    translation: {
+      [TextStrings.name]: 'Iván Martínez',
+      [TextStrings.about_me]: 'Acerca de mi',
+      [TextStrings.experience]: 'Experiencia',
+      [TextStrings.portfolio]: 'Portafolio',
+      [TextStrings.skills]: 'Habilidades',
+      [TextStrings.image_caption]: 'Ingeniero en Computación/Desarrollador Web',
+      [TextStrings.brief]:
+        'Hola, soy Iván, soy ingeniero en computación con MS en Ciencias de la computación',
+      [TextStrings.presentation]:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      [TextStrings.soft_skills]: 'Habilidades blandas',
+      [TextStrings.hard_skills]: 'Habilidades técnicas',
+      [TextStrings.programming_langs]: 'Lenguajes de programación',
+      [TextStrings.frameworks]: 'Frameworks',
+      [TextStrings.tools]: 'Herramientas',
+      [TextStrings.calendar_title]: 'Aplicación de calendario',
+      [TextStrings.calendar_desc]: 'Esta es una aplicación de calendario con funciones como: iniciar sesión, registrarse, guardar un evento, actualizar un evento y eliminar un evento. El backend está hecho con NodeJS y express.',
+      [TextStrings.try]: 'Ver',
+      [TextStrings.source_code]: 'Código fuente',
+      
+    },
+  },
+};
+
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'es',
+  interpolation: {
+    escapeValue: false,
+  },
+});
+
+experience.forEach( (exp, expIndex) => {
+  i18n.addResource('es', 'translation', `exp_${expIndex}_position`, exp.position_es);
+  i18n.addResource('en', 'translation', `exp_${expIndex}_position`, exp.position);
+
+  exp.duties.forEach( (duty, dutyIndex) => {
+    i18n.addResource('en', 'translation', `exp_${expIndex}_duty_${dutyIndex}`, duty);
+  });
+  exp.duties_es.forEach( (duty, dutyIndex) => {
+    i18n.addResource('es', 'translation', `exp_${expIndex}_duty_${dutyIndex}`, duty);
+  });
+
+
+  SKILLS_DATA.soft.en.forEach( (skill, index) => {
+    i18n.addResource('en', 'translation', `soft_skill_${index}`, skill);
+  });
+
+  SKILLS_DATA.soft.es.forEach( (skill, index) => {
+    i18n.addResource('es', 'translation', `soft_skill_${index}`, skill);
+  });
+
+});
+
+export default i18n;
