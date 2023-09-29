@@ -11,7 +11,10 @@ const colors = {
 }
 
 export default {
-  content: ["./src/**/*.{html,js,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
