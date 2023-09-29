@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { Typography } from '../../Typography';
 import { TextStrings } from '../../../common/i18next';
 import { useTranslation } from 'react-i18next';
-import { Button } from '../../Button';
 import calendarImg from '../../../assets/calendar.png';
 import { PortfolioItem } from './PortfolioItem';
 import chatImg from '../../../assets/chat.png';
