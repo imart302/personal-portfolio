@@ -4,9 +4,8 @@ import clsx from 'clsx';
 import { Typography } from '../../Typography';
 import { TextStrings } from '../../../common/i18next';
 import { useTranslation } from 'react-i18next';
-import calendarImg from '../../../assets/calendar.png';
 import { PortfolioItem } from './PortfolioItem';
-import chatImg from '../../../assets/chat.png';
+import { PORTFOLIO } from '../../../data/portfolio';
 
 export const Portfolio: React.FC = () => {
   const [t] = useTranslation();
@@ -24,19 +23,20 @@ export const Portfolio: React.FC = () => {
           }}
         />
       </div>
-
-      <PortfolioItem
-        demoImgUrl={calendarImg}
-        title={t(`${TextStrings.calendar_title}`)}
-        description={t(`${TextStrings.calendar_desc}`)}
-      />
-
-      <PortfolioItem
-        demoImgUrl={chatImg}
-        title={t(`${TextStrings.calendar_title}`)}
-        description={t(`${TextStrings.calendar_desc}`)}
-      />
-
+      {
+        PORTFOLIO.map( (pItem, i) => {
+          return (
+            <PortfolioItem
+              demoImgUrl={pItem.imgDemoUrl || ''}
+              title={t(`portfolio_${pItem.id}_title`)}
+              description={t(`portfolio_${pItem.id}_desc`)}
+              key={i}
+              demoUrl={pItem.demoUrl}
+              sourceCodeUrl={pItem.sourceCodeUrl}
+            />
+          );
+        })
+      }
     </SectionLayout>
   );
 };

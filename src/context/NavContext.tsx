@@ -28,7 +28,7 @@ export const ScrollNavContextProvider: React.FC<{
   const [sections, setSections] = useState<IScrollNavSection[]>([]);
 
   const pushSection = (s: IScrollNavSection) => {
-    console.log('🚀 ~ file: NavContext.tsx:26 ~ pushSection ~ s:', s);
+    //console.log('🚀 ~ file: NavContext.tsx:26 ~ pushSection ~ s:', s);
     if (! sections.find((i) => i.name === s.name)) {
       setSections((prev) => {
         return [...prev, s];
@@ -37,13 +37,12 @@ export const ScrollNavContextProvider: React.FC<{
   };
 
   const navigate = (section: string) => {
-    console.log('🚀 ~ file: NavContext.tsx:34 ~ navigate ~ section:', section);
+    //console.log('🚀 ~ file: NavContext.tsx:34 ~ navigate ~ section:', section);
     const s = sections.find((a) => a.name === section);
-    console.log("🚀 ~ file: NavContext.tsx:44 ~ navigate ~ s:", s)
+    //console.log("🚀 ~ file: NavContext.tsx:44 ~ navigate ~ s:", s)
     
     if (s && s.refObj.current) {
-    
-      s.refObj.current?.scrollIntoView();
+      s.refObj.current?.scrollIntoView({behavior: 'smooth'});
     }
   };
 

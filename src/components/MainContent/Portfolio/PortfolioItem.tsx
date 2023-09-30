@@ -5,8 +5,6 @@ import { TextStrings } from '../../../common/i18next';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../Button';
 
-
-
 export interface IPortfolioItemProps {
   title: string;
   description: string;
@@ -22,8 +20,8 @@ export const PortfolioItem: React.FC<IPortfolioItemProps> = ({
   sourceCodeUrl,
   demoUrl,
 }) => {
-  const [ t ] = useTranslation();
-  
+  const [t] = useTranslation();
+
   return (
     <div>
       <div
@@ -60,25 +58,33 @@ export const PortfolioItem: React.FC<IPortfolioItemProps> = ({
             />
           </div>
           <div className={clsx('flex', 'gap-4')}>
-            {demoUrl && <Button
-              title={t(`${TextStrings.try}`) + ' \u2192'}
-              action={() => {
-                ('');
-              }}
-            />}
-            {sourceCodeUrl && <Button
-              title={t(`${TextStrings.source_code}`) + ' \u2192'}
-              action={() => {
-                ('');
-              }}
-            />}
+            {demoUrl && (
+              <a href={demoUrl} target="_blank">
+                <Button
+                  title={t(`${TextStrings.try}`) + ' \u2192'}
+                  action={() => {
+                    ('');
+                  }}
+                />
+              </a>
+            )}
+            {sourceCodeUrl && (
+              <a href={sourceCodeUrl} target="_blank">
+                <Button
+                  title={t(`${TextStrings.source_code}`) + ' \u2192'}
+                  action={() => {
+                    ('');
+                  }}
+                />
+              </a>
+            )}
           </div>
         </div>
         <div className={clsx('p-5')}>
           <img src={demoImgUrl} alt="" />
         </div>
       </div>
-      <hr />
+      <hr className='my-7'/>
     </div>
   );
 };

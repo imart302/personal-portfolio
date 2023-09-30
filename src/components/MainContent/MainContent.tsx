@@ -12,6 +12,8 @@ export const MainContent = () => {
   const scrollNavContext = useContext(ScrollNavContext);
   const aboutMeRef = useRef<HTMLElement>(null);
   const portfolioRef = useRef<HTMLElement>(null); 
+  const expRef = useRef<HTMLElement>(null);
+  const skillsRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if(aboutMeRef && aboutMeRef.current) {
@@ -27,8 +29,25 @@ export const MainContent = () => {
         refObj: portfolioRef,
       });
     }
+
+    if(expRef && expRef.current) {
+      scrollNavContext.pushSection?.({
+        name: expRef.current?.id,
+        refObj: expRef,
+      });
+    }
+
+    
+    if(skillsRef && skillsRef.current) {
+      scrollNavContext.pushSection?.({
+        name: skillsRef.current?.id,
+        refObj: skillsRef,
+      });
+    }
+
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [aboutMeRef, portfolioRef]);  
+  }, [aboutMeRef, portfolioRef, expRef, skillsRef]);  
 
   return (
       <div
@@ -46,10 +65,10 @@ export const MainContent = () => {
           <section ref={aboutMeRef} id="aboutme">
             <AboutMe />
           </section>
-          <section id="experience">
+          <section ref={expRef} id="experience">
             <Experience />
           </section>
-          <section id="skills">
+          <section ref={skillsRef} id="skills">
             <Skills />
           </section>
           <section ref={portfolioRef} id="portfolio">
